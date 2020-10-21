@@ -1,0 +1,10 @@
+{
+  "name": "semantic-release-teams",
+  "version": "1.0.4",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.20.0",
+    "semantic-release": "^17.2.1"
+  }
+}
