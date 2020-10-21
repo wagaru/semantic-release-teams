@@ -24,9 +24,8 @@ module.exports = async (pluginConfig, context) => {
             'Content-Type': 'application/json;charset=UTF-8',
         }
     }).then (res => {
-        logger.log('Post to webhook with res: '+JSON.stringify(res))
+        logger.log('Post to webhook success.')
     }).catch( err => {
-        logger.log('Post to webhook with err: '+JSON.stringify(err))
         throw new AggregateError([err])
     })
 }
