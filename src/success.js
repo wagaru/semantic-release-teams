@@ -1,30 +1,31 @@
 const axios = require('axios')
+const AggregateError = require('aggregate-error')
 
 module.exports = async (pluginConfig, context) => {
     const { env: { WEBHOOK_URL } } = context
     const { logger } = context
 
-    logger.log('webhookUrl: '+WEBHOOK_URL)
-    if (WEBHOOK_URL) {
-        axios({
-            method: 'post',
-            url: WEBHOOK_URL,
-            'Content-type': 'application/json',
-            data: `
+    let content = {
+        "@type": "MessageCard",
+        "@context": "https://schema.org/extensions",
+        "summary": "Release Success",
+        "sections": [
             {
-                "@type": "MessageCard",
-                "@context": "https://schema.org/extensions",
-                "summary": "Release Success",
-                "sections": [
-                    {
-                        "markdown": false,
-                        "activityTitle": "Release Success",
-                        "activitySubtitle": "",
-                        "activityImage": "https://img.icons8.com/color/48/000000/ok.png",
-                    }
-                ]
-            },
-            `
-        })
+                "markdown": false,
+                "activityTitle": "Release Success",
+                "activityImage": "https://img.icons8.com/color/48/000000/ok.png",
+            }
+        ]
     }
+
+    await axios.post(WEBHOOK_URL, content, {
+        headers: {
+            'Content-Type': 'application/json;charset=UTF-8',
+        }
+    }).then (res => {
+        logger.log('Post to webhook with res: '.JSON.stringify(res))
+    }).catch( err => {
+        logger.log('Post to webhook with err: '.JSON.stringify(err))
+        throw new AggregateError(err)
+    })
 }
