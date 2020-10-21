@@ -11,5 +11,6 @@ module.exports = async(pluginConfig, context) => {
 
     if (errors.length > 0) {
         throw new AggregateError(errors);
+        
     }
 }
