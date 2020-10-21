@@ -3,7 +3,7 @@ const AggregateError = require('aggregate-error')
 
 module.exports = async (pluginConfig, context) => {
     const { env: { WEBHOOK_URL } } = context
-    const { logger } = context
+    const { logger, nextRelease } = context
 
     let content = {
         "@type": "MessageCard",
@@ -13,6 +13,7 @@ module.exports = async (pluginConfig, context) => {
             {
                 "markdown": false,
                 "activityTitle": "Release Success",
+                "activitySubtitle": "version "+nextRelease.version,
                 "activityImage": "https://img.icons8.com/color/48/000000/ok.png",
             }
         ]
@@ -23,9 +24,9 @@ module.exports = async (pluginConfig, context) => {
             'Content-Type': 'application/json;charset=UTF-8',
         }
     }).then (res => {
-        logger.log('Post to webhook with res: '.JSON.stringify(res))
+        logger.log('Post to webhook with res: '+JSON.stringify(res))
     }).catch( err => {
-        logger.log('Post to webhook with err: '.JSON.stringify(err))
+        logger.log('Post to webhook with err: '+JSON.stringify(err))
         throw new AggregateError(err)
     })
 }
