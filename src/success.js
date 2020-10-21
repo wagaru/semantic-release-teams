@@ -27,6 +27,6 @@ module.exports = async (pluginConfig, context) => {
         logger.log('Post to webhook with res: '+JSON.stringify(res))
     }).catch( err => {
         logger.log('Post to webhook with err: '+JSON.stringify(err))
-        throw new AggregateError(err)
+        throw new AggregateError([err])
     })
 }
