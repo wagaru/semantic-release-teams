@@ -6,5 +6,7 @@
   "dependencies": {
     "axios": "^0.20.0",
     "semantic-release": "^17.2.1"
-  }
+  },
+  "homepage": "https://github.com/wagaru/semantic-release-teams",
+  "repository": "github:wagaru/semantic-release-teams"
 }
