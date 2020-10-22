@@ -14,10 +14,10 @@ module.exports = async (pluginConfig, context) => {
                 "markdown": false,
                 "activityTitle": "Version: "+version,
                 "activitySubtitle": "Tag: "+tag,
-                "activityImage": "https://img.icons8.com/flat_round/48/000000/box-important.png",
-                "text": notes
+                "activityImage": "https://img.icons8.com/flat_round/48/000000/box-important.png"
             }
-        ]
+        ],
+        "text": notes
     }
 
     await axios.post(WEBHOOK_URL, content, {
