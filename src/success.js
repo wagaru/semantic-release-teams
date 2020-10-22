@@ -9,9 +9,9 @@ module.exports = async (pluginConfig, context) => {
         "@type": "MessageCard",
         "@context": "https://schema.org/extensions",
         "summary": "Release Success",
+        "title": "Release Success",
         "sections": [
             {
-                "markdown": false,
                 "activityTitle": "Version: "+version,
                 "activitySubtitle": "Tag: "+gitTag,
                 "activityImage": "https://img.icons8.com/color/48/000000/ok.png",
