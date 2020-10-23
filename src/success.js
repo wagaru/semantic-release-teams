@@ -12,6 +12,7 @@ module.exports = async (pluginConfig, context) => {
         "title": "Release Success",
         "sections": [
             {
+                "markdown": true,
                 "activityTitle": "Version: "+version,
                 "activitySubtitle": "Tag: "+gitTag,
                 "activityImage": "https://img.icons8.com/color/48/000000/ok.png",
